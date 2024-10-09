@@ -1,5 +1,5 @@
-import Hero from "@/components/hero";
+import { ReviewsChat } from "@/components/chat/reviews-chat";
 
-export default async function Index() {
-	return <Hero />;
+export default function Index() {
+	return <ReviewsChat />;
 }
