@@ -39,7 +39,10 @@ export default function RootLayout({
 									<SidebarDrawer />
 									<Link href={"/"}>AC G2 Reviews Chatbot</Link>
 								</div>
-								{!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
+								<div className="flex items-center gap-4">
+									{!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
+									<ThemeSwitcher />
+								</div>
 							</div>
 						</nav>
 					</header>
@@ -51,17 +54,16 @@ export default function RootLayout({
 					<footer className="w-full border-t">
 						<div className="w-full max-w-5xl mx-auto flex items-center justify-center gap-8 py-4 text-center text-xs">
 							<p>
-								Powered by{" "}
+								Built by{" "}
 								<a
-									href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
+									href="https://github.com/rishadfb"
 									target="_blank"
 									className="font-bold hover:underline"
 									rel="noreferrer"
 								>
-									Supabase
+									@rishadfb
 								</a>
 							</p>
-							<ThemeSwitcher />
 						</div>
 					</footer>
 				</ThemeProvider>
