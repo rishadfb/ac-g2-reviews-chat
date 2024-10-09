@@ -6,15 +6,40 @@ import { ExampleButton } from "./example-button";
 interface ChatIntroProps
 	extends Pick<
 		UseChatHelpers,
-		"input" | "handleInputChange" | "handleSubmit" | "isLoading"
+		"input" | "handleInputChange" | "handleSubmit" | "isLoading" | "setInput"
 	> {}
+
+interface ExampleQuery {
+	label: string;
+	text: string;
+}
+
+const exampleQueries: ExampleQuery[] = [
+	{
+		label: "Most used features",
+		text: "What are the most used features of our product?",
+	},
+	{
+		label: "Customer frustration",
+		text: "What are the main sources of customer frustration?",
+	},
+	{
+		label: "Product ideas",
+		text: "Can you suggest some new product ideas based on customer feedback?",
+	},
+];
 
 export function ChatIntro({
 	input,
 	handleInputChange,
 	handleSubmit,
 	isLoading,
+	setInput,
 }: ChatIntroProps) {
+	const handleExampleClick = (text: string) => {
+		setInput(text);
+	};
+
 	return (
 		<>
 			<Card>
@@ -25,9 +50,14 @@ export function ChatIntro({
 				</CardHeader>
 				<CardContent>
 					<div className="flex flex-col gap-2 items-start">
-						<ExampleButton>Find most used features</ExampleButton>
-						<ExampleButton>Understand customer frustration</ExampleButton>
-						<ExampleButton>Product ideas</ExampleButton>
+						{exampleQueries.map((query) => (
+							<ExampleButton
+								key={query.label}
+								onClick={() => handleExampleClick(query.text)}
+							>
+								{query.label}
+							</ExampleButton>
+						))}
 					</div>
 				</CardContent>
 			</Card>

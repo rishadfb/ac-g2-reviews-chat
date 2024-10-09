@@ -15,6 +15,7 @@ export function ReviewsChat(props: UseChatHelpers) {
 					handleInputChange={props.handleInputChange}
 					handleSubmit={props.handleSubmit}
 					isLoading={props.isLoading}
+					setInput={props.setInput}
 				/>
 			)}
 		</div>
