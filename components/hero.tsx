@@ -24,7 +24,20 @@ export default function Header() {
 			</div>
 			<h1 className="sr-only">ActiveCampaign G2 Reviews AI Chatbot</h1>
 			<p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
-				Talk to a knowledge base of 4,500 customer reviews from G2.
+				Talk to a knowledge base of{" "}
+				<span className="text-purple-700 dark:text-purple-400">
+					4,500 customer reviews
+				</span>{" "}
+				from{" "}
+				<a
+					href="https://www.g2.com"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-orange-700 dark:text-orange-400 hover:underline"
+				>
+					G2
+				</a>
+				.
 			</p>
 			<div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
 		</div>
