@@ -1,6 +1,12 @@
-import ActiveCampaignLogo from "./ac-logo";
+"use client";
+
+import { useTheme } from "next-themes";
+import ActiveCampaignLogoDark from "./ac-logo-dark";
+import ActiveCampaignLogoLight from "./ac-logo-light";
 
 export default function Header() {
+	const { resolvedTheme } = useTheme();
+
 	return (
 		<div className="flex flex-col gap-16 items-center">
 			<div className="flex gap-8 justify-center items-center">
@@ -9,10 +15,14 @@ export default function Header() {
 					target="_blank"
 					rel="noreferrer"
 				>
-					<ActiveCampaignLogo />
+					{resolvedTheme === "dark" ? (
+						<ActiveCampaignLogoDark />
+					) : (
+						<ActiveCampaignLogoLight />
+					)}
 				</a>
 			</div>
-			<h1 className="sr-only">Supabase and Next.js Starter Template</h1>
+			<h1 className="sr-only">ActiveCampaign G2 Reviews AI Chatbot</h1>
 			<p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
 				Talk to a knowledge base of 4,500 customer reviews from G2.
 			</p>
