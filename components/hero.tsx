@@ -1,6 +1,8 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import ActiveCampaignLogoDark from "./ac-logo-dark";
 import ActiveCampaignLogoLight from "./ac-logo-light";
 
@@ -8,8 +10,8 @@ export default function Header() {
 	const { resolvedTheme } = useTheme();
 
 	return (
-		<div className="flex flex-col gap-16 items-center">
-			<div className="flex gap-8 justify-center items-center">
+		<div className="flex flex-col items-center">
+			<div className="flex justify-center items-center mb-2">
 				<a
 					href="https://www.activecampaign.com/"
 					target="_blank"
@@ -23,7 +25,7 @@ export default function Header() {
 				</a>
 			</div>
 			<h1 className="sr-only">ActiveCampaign G2 Reviews AI Chatbot</h1>
-			<p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
+			<p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center mb-12">
 				Talk to a knowledge base of{" "}
 				<span className="text-purple-700 dark:text-purple-400">
 					4,500 customer reviews
@@ -39,7 +41,10 @@ export default function Header() {
 				</a>
 				.
 			</p>
-			<div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
+			<div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent mb-8" />
+			<Link href="/chat" passHref>
+				<Button size="lg">Start Chatting</Button>
+			</Link>
 		</div>
 	);
 }

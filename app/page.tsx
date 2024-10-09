@@ -1,10 +1,7 @@
 "use client";
 
-import { ReviewsChat } from "@/components/chat/reviews-chat";
-import { useChat } from "ai/react";
+import Hero from "@/components/hero";
 
 export default function Home() {
-	const chatProps = useChat();
-
-	return <ReviewsChat {...chatProps} />;
+	return <Hero />;
 }
