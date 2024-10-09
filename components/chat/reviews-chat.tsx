@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { UseChatHelpers } from "ai/react";
 import { ChatInput } from "./chat-input";
+import { ChatMessages } from "./chat-messages";
 import { ExampleButton } from "./example-button";
 
-export function ReviewsChat() {
+export function ReviewsChat(props: UseChatHelpers) {
 	return (
 		<div className="container mx-auto p-4 max-w-3xl">
 			<Card className="bg-background text-foreground">
@@ -18,15 +20,21 @@ export function ReviewsChat() {
 					<p className="mb-4">
 						You can start a conversation here or try the following examples:
 					</p>
-					<div className="flex flex-col gap-2 items-start">
+					<div className="flex flex-col gap-2 items-start mb-6">
 						<ExampleButton>Find most used features</ExampleButton>
 						<ExampleButton>Understand customer frustration</ExampleButton>
 						<ExampleButton>Product ideas</ExampleButton>
 					</div>
+					<ChatMessages messages={props.messages} />
 				</CardContent>
 			</Card>
 			<div className="mt-8">
-				<ChatInput />
+				<ChatInput
+					input={props.input}
+					handleInputChange={props.handleInputChange}
+					handleSubmit={props.handleSubmit}
+					isLoading={props.isLoading}
+				/>
 			</div>
 		</div>
 	);

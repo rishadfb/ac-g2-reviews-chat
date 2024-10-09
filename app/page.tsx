@@ -1,5 +1,10 @@
-import { ReviewsChat } from "@/components/chat/reviews-chat";
+"use client";
 
-export default function Index() {
-	return <ReviewsChat />;
+import { ReviewsChat } from "@/components/chat/reviews-chat";
+import { useChat } from "ai/react";
+
+export default function Home() {
+	const chatProps = useChat();
+
+	return <ReviewsChat {...chatProps} />;
 }
