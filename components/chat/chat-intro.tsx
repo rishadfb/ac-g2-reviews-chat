@@ -27,6 +27,10 @@ const exampleQueries: ExampleQuery[] = [
 		label: "Product ideas",
 		text: "Can you suggest some new product ideas based on customer feedback?",
 	},
+	{
+		label: "Incorporate AI",
+		text: "How can we incorporate AI into our product to improve customer experience?",
+	},
 ];
 
 export function ChatIntro({
