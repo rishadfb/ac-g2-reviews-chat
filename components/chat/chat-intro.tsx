@@ -20,17 +20,11 @@ export function ChatIntro({
 			<Card>
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold">
-						Welcome to the ActiveCampaign G2 Reviews AI Chatbot!
+						Start a conversation here or try the following examples:
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<p className="text-muted-foreground mb-6">
-						Talk to a knowledge base of 4,500 customer reviews from G2.
-					</p>
-					<p className="mb-4">
-						You can start a conversation here or try the following examples:
-					</p>
-					<div className="flex flex-col gap-2 items-start mb-6">
+					<div className="flex flex-col gap-2 items-start">
 						<ExampleButton>Find most used features</ExampleButton>
 						<ExampleButton>Understand customer frustration</ExampleButton>
 						<ExampleButton>Product ideas</ExampleButton>
