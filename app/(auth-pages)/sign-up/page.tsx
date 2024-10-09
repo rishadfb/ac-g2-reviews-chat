@@ -17,6 +17,9 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
 				<form action={signInWithGoogleAction}>
 					<SubmitButton className="w-full">Sign up with Google</SubmitButton>
 				</form>
+				<p className="text-xs text-muted-foreground mt-2">
+					Note: This is not SSO. You will be redirected to Google.
+				</p>
 				<FormMessage message={searchParams} />
 			</div>
 		</div>
