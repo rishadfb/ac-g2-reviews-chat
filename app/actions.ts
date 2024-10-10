@@ -119,8 +119,14 @@ export const resetPasswordAction = async (formData: FormData) => {
 
 export const signOutAction = async () => {
   const supabase = createClient();
-  await supabase.auth.signOut();
-  return redirect('/sign-in');
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error(error.message);
+    return encodedRedirect('error', '/sign-in', 'Could not sign out');
+  }
+  
+  return redirect('/');
 };
 
 export const signInWithGoogleAction = async () => {
@@ -135,7 +141,8 @@ export const signInWithGoogleAction = async () => {
   });
 
   if (error) {
-    return encodedRedirect('error', '/sign-in', error.message);
+    console.error(error.message);
+    return encodedRedirect('error', '/sign-in', 'Could not sign in with Google');
   }
 
   return redirect(data.url);
