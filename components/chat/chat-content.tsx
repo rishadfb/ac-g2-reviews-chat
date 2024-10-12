@@ -41,7 +41,7 @@ export function ChatContent({
 	return (
 		<div className="flex-grow flex flex-col h-full space-y-8">
 			<div
-				className="flex-grow h-96 overflow-y-auto p-4"
+				className="flex-grow h-96 overflow-y-auto"
 				style={{
 					msOverflowStyle: "none",
 					scrollbarWidth: "none",
@@ -50,14 +50,12 @@ export function ChatContent({
 				<ChatMessages messages={messages} />
 				<div ref={messagesEndRef} />
 			</div>
-			<div className="p-4">
-				<ChatInput
-					input={input}
-					handleInputChange={handleInputChange}
-					handleSubmit={handleSubmit}
-					isLoading={isLoading}
-				/>
-			</div>
+			<ChatInput
+				input={input}
+				handleInputChange={handleInputChange}
+				handleSubmit={handleSubmit}
+				isLoading={isLoading}
+			/>
 		</div>
 	);
 }
