@@ -1,10 +1,17 @@
 "use client";
 
+import type { CoreMessage } from "ai";
 import { useChat } from "ai/react";
 import { ChatContent } from "./chat-content";
 import { ChatIntro } from "./chat-intro";
 
-export function ReviewsChat() {
+export function ReviewsChat({
+	id,
+	initialMessages,
+}: {
+	id: string;
+	initialMessages: CoreMessage[];
+}) {
 	const {
 		input,
 		handleInputChange,
@@ -12,7 +19,12 @@ export function ReviewsChat() {
 		isLoading,
 		setInput,
 		messages,
-	} = useChat();
+	} = useChat({
+		body: {
+			id,
+			messages: initialMessages,
+		},
+	});
 	const hasMessages = messages.length > 0;
 
 	return (
