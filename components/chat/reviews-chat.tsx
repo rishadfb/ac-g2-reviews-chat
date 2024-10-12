@@ -1,8 +1,8 @@
 "use client";
 
 import { useChat } from "ai/react";
+import { ChatContent } from "./chat-content";
 import { ChatIntro } from "./chat-intro";
-import { ChatMessages } from "./chat-messages";
 
 export function ReviewsChat() {
 	const {
@@ -16,17 +16,25 @@ export function ReviewsChat() {
 	const hasMessages = messages.length > 0;
 
 	return (
-		<div className="container mx-auto p-4 max-w-3xl">
+		<div className="flex flex-col h-full max-w-3xl mx-auto">
 			{hasMessages ? (
-				<ChatMessages messages={messages} />
-			) : (
-				<ChatIntro
+				<ChatContent
+					messages={messages}
 					input={input}
 					handleInputChange={handleInputChange}
 					handleSubmit={handleSubmit}
 					isLoading={isLoading}
-					setInput={setInput}
 				/>
+			) : (
+				<div className="flex-grow overflow-y-auto p-4">
+					<ChatIntro
+						input={input}
+						handleInputChange={handleInputChange}
+						handleSubmit={handleSubmit}
+						isLoading={isLoading}
+						setInput={setInput}
+					/>
+				</div>
 			)}
 		</div>
 	);
