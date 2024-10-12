@@ -47,7 +47,7 @@ export default function RootLayout({
 						</nav>
 					</header>
 					<main className="flex-grow w-full flex flex-col items-center">
-						<div className="w-full max-w-5xl flex flex-col gap-20 items-center p-5 py-16">
+						<div className="w-full flex-grow max-w-5xl flex flex-col gap-20 items-center p-5 py-16">
 							{children}
 						</div>
 					</main>

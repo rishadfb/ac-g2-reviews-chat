@@ -28,10 +28,10 @@ export function ChatContent({
 }: ChatContentProps) {
 	return (
 		<>
-			<div className="flex-grow overflow-y-auto p-4">
+			<div className="flex-grow flex flex-col overflow-y-auto p-4">
 				<ChatMessages messages={messages} />
 			</div>
-			<div className="p-4 border-t">
+			<div className="p-4">
 				<ChatInput
 					input={input}
 					handleInputChange={handleInputChange}
