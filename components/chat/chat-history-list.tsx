@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import useSWR from "swr";
 
 interface ChatHistoryItem {
@@ -42,7 +43,7 @@ export default function ChatHistoryList({
 					className="justify-start"
 					onClick={() => onSelectChat(chat.id)}
 				>
-					{chat.id}
+					<Link href={`/chat/${chat.id}`}>{chat.id}</Link>
 				</Button>
 			))}
 		</div>
