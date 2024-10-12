@@ -2,6 +2,7 @@
 
 import { useChat } from "ai/react";
 import { ChatContent } from "./chat-content";
+import { ChatIntro } from "./chat-intro";
 
 export function ReviewsChat() {
 	const {
@@ -16,7 +17,7 @@ export function ReviewsChat() {
 
 	return (
 		<div className="flex flex-col flex-grow w-full max-w-3xl mx-auto">
-			{/* {hasMessages ? (
+			{hasMessages ? (
 				<ChatContent
 					messages={messages}
 					input={input}
@@ -34,14 +35,7 @@ export function ReviewsChat() {
 						setInput={setInput}
 					/>
 				</div>
-			)} */}
-			<ChatContent
-				messages={messages}
-				input={input}
-				handleInputChange={handleInputChange}
-				handleSubmit={handleSubmit}
-				isLoading={isLoading}
-			/>
+			)}
 		</div>
 	);
 }
