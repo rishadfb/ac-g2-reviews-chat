@@ -1,21 +1,37 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import useSWR from "swr";
 
-// This is a placeholder for the actual chat history data
-const chatHistory = [
-	{ id: 1, title: "Chat 1" },
-	{ id: 2, title: "Chat 2" },
-	{ id: 3, title: "Chat 3" },
-];
+interface ChatHistoryItem {
+	id: string;
+	payload: {
+		messages: Array<{ content: string }>;
+	};
+}
 
 interface ChatHistoryListProps {
-	onSelectChat: () => void;
+	onSelectChat: (id: string) => void;
 }
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function ChatHistoryList({
 	onSelectChat,
 }: ChatHistoryListProps) {
+	const { data: chatHistory, error } = useSWR<ChatHistoryItem[]>(
+		"/api/chat/history",
+		fetcher,
+	);
+
+	if (error) {
+		return <div>Failed to load chat history</div>;
+	}
+
+	if (!chatHistory) {
+		return <div>Loading...</div>;
+	}
+
 	return (
 		<div className="flex flex-col space-y-2 mt-4">
 			<h2 className="text-lg font-semibold mb-2 ml-3">Chat History</h2>
@@ -24,9 +40,9 @@ export default function ChatHistoryList({
 					key={chat.id}
 					variant="ghost"
 					className="justify-start"
-					onClick={onSelectChat}
+					onClick={() => onSelectChat(chat.id)}
 				>
-					{chat.title}
+					{chat.id}
 				</Button>
 			))}
 		</div>
