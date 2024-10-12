@@ -1,29 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/utils/supabase/client";
+import { useAuthStatus } from "@/hooks/useAuthStatus";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import ActiveCampaignLogoDark from "./ac-logo-dark";
 import ActiveCampaignLogoLight from "./ac-logo-light";
 
 export default function Header() {
 	const { resolvedTheme } = useTheme();
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-	useEffect(() => {
-		const supabase = createClient();
-
-		const checkAuth = async () => {
-			const {
-				data: { user },
-			} = await supabase.auth.getUser();
-			setIsAuthenticated(!!user);
-		};
-
-		checkAuth();
-	}, []);
+	const user = useAuthStatus();
 
 	return (
 		<div className="flex flex-col items-center">
@@ -58,7 +44,7 @@ export default function Header() {
 				.
 			</p>
 			<div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent mb-8" />
-			{isAuthenticated ? (
+			{user ? (
 				<Link href="/chat" passHref>
 					<Button size="lg">Start Chatting</Button>
 				</Link>
