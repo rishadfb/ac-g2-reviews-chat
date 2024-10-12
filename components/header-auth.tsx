@@ -1,12 +1,17 @@
 "use client";
 
-import { signOutAction } from "@/app/actions";
 import { useAuthStatus } from "@/hooks/useAuthStatus";
+import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
 export default function AuthButton() {
 	const user = useAuthStatus();
+	const supabase = createClient();
+
+	const handleSignOut = async () => {
+		await supabase.auth.signOut();
+	};
 
 	if (!user) {
 		return (
@@ -21,11 +26,9 @@ export default function AuthButton() {
 	return (
 		<div className="flex items-center gap-4">
 			Hey, {user.user_metadata.full_name || user.email}!
-			<form action={signOutAction}>
-				<Button type="submit" variant="outline">
-					Sign out
-				</Button>
-			</form>
+			<Button onClick={handleSignOut} variant="outline">
+				Sign out
+			</Button>
 		</div>
 	);
 }
