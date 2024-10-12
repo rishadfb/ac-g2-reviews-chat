@@ -17,7 +17,7 @@ export function ChatInput({
 	};
 
 	return (
-		<form onSubmit={onSubmit} className="flex items-center space-x-2">
+		<form onSubmit={onSubmit} className="flex items-center space-x-4">
 			<Input
 				type="text"
 				placeholder="Type your message..."
