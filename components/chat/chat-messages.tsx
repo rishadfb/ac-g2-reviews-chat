@@ -2,7 +2,7 @@ import type { Message } from "ai";
 
 export function ChatMessages({ messages }: { messages: Message[] }) {
 	return (
-		<div className="max-h-96 overflow-y-auto space-y-4">
+		<div className="space-y-4">
 			{messages.map((message) => (
 				<div
 					key={message.id}

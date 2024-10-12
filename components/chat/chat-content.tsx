@@ -1,4 +1,5 @@
 import type { ChatRequestOptions, Message } from "ai";
+import { useEffect, useRef } from "react";
 import { ChatInput } from "./chat-input";
 import { ChatMessages } from "./chat-messages";
 
@@ -26,10 +27,28 @@ export function ChatContent({
 	handleSubmit,
 	isLoading,
 }: ChatContentProps) {
+	const messagesEndRef = useRef<HTMLDivElement>(null);
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+	};
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		scrollToBottom();
+	}, [messages]);
+
 	return (
-		<>
-			<div className="flex-grow flex flex-col overflow-y-auto p-4">
+		<div className="flex-grow flex flex-col h-full space-y-8">
+			<div
+				className="flex-grow h-96 overflow-y-auto p-4"
+				style={{
+					msOverflowStyle: "none",
+					scrollbarWidth: "none",
+				}}
+			>
 				<ChatMessages messages={messages} />
+				<div ref={messagesEndRef} />
 			</div>
 			<div className="p-4">
 				<ChatInput
@@ -39,6 +58,6 @@ export function ChatContent({
 					isLoading={isLoading}
 				/>
 			</div>
-		</>
+		</div>
 	);
 }
