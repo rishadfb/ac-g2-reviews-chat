@@ -1,12 +1,5 @@
-import { OpenAIStream, StreamingTextResponse } from 'ai';
-import { Configuration, OpenAIApi } from 'openai-edge';
-
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(config);
-
-export const runtime = 'edge';
+import { openai } from '@ai-sdk/openai';
+import { convertToCoreMessages, streamText } from 'ai';
 
 export async function POST(req: Request) {
   try {
@@ -16,21 +9,14 @@ export async function POST(req: Request) {
       throw new Error('OPENAI_API_KEY is not set');
     }
 
-    const response = await openai.createChatCompletion({
-      model: 'gpt-4o-mini',
-      stream: true,
-      messages: [
-        {
-          role: 'system',
-          content:
-            'You are an AI assistant for ActiveCampaign, answering questions based on G2 reviews.',
-        },
-        ...messages,
-      ],
+    const response = await streamText({
+      model: openai('gpt-4o-mini'),
+      system:
+        'You are an AI assistant for ActiveCampaign, answering questions based on G2 reviews.',
+      messages: convertToCoreMessages(messages),
     });
 
-    const stream = OpenAIStream(response);
-    return new StreamingTextResponse(stream);
+    return response.toDataStreamResponse();
   } catch (error) {
     console.error('Error in chat API:', error);
     return new Response(JSON.stringify({ error: 'An error occurred' }), {
