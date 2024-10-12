@@ -1,6 +1,6 @@
 "use client";
 
-import type { CoreMessage } from "ai";
+import type { Message } from "ai";
 import { useChat } from "ai/react";
 import { ChatContent } from "./chat-content";
 import { ChatIntro } from "./chat-intro";
@@ -10,7 +10,7 @@ export function ReviewsChat({
 	initialMessages,
 }: {
 	id: string;
-	initialMessages: CoreMessage[];
+	initialMessages: Message[];
 }) {
 	const {
 		input,
